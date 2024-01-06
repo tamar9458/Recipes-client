@@ -12,7 +12,7 @@ import * as yup from "yup"
 import { FormField, Form } from 'semantic-ui-react'
 import AddCategory from './AddCategory';
 
-export default (byUser) => {
+export default ({byUser}) => {
     const [Categories, setCategories] = useState([]);
     const [recipes, setRecipes] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -87,6 +87,9 @@ export default (byUser) => {
         console.log("sorting")
         setRecipes(recipes.sort((a, b) => a.Name.localeCompare(b.Name)));
         console.log(recipes)
+    }   
+     const deleteRecipe = (id) => {
+        console.log("fgdhjkljhghjkhgfgdfhfjnfdgjfffffffffffffffffffffffffffffffffff")
     }
     
     
@@ -132,8 +135,6 @@ export default (byUser) => {
             navigate('/recipe/edit',{state: x })
             // <AddRecipe/>
             )}>Edit</button>
-
-
             </div>
             : null)}
 

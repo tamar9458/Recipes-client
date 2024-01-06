@@ -38,13 +38,13 @@ export default function App() {
                   Username:data.Username,
                   Password:data.Password,
                   Name:data.Name,Phone:data.Phone,Email:data.Email,
-                  Tz:data.Tz}).then((d)=>{console.log(d) }).catch((error) => {
+                  Tz:data.Tz})
+                  .then((d)=>{console.log(d)
+                    navigate("/login", { state: data })
+                 })
+                  .catch((error) => {
                 alert(error.response.data)
-                // navigate("/signUp")
-                // schema=null
-                // // console.log("e",e,data)
-                // e.preventDefault()
-                // register("","","","","")
+                reset()
             })
     }}
 

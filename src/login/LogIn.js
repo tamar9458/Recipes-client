@@ -34,6 +34,7 @@ export default function App() {
             .then((d) => {
                 console.log(d)
                 dispatch({ type: Actions.SET_USER, user: d.data })
+                localStorage.setItem("user",JSON.stringify(data))
                 navigate("/homepage")
                 alert(`HELLO ${ data.userName}`)
             }).catch((error) => {

@@ -35,13 +35,8 @@ function App() {
       <h3>מיליון הצלחות</h3>
       <ul>
         למתרגלת:
-        <li>my recipe</li>
-        <li>ריענון - למה כשמרעננים יוצא מהמשתמש</li>
-        <li>למה כשמרעננים הטופס לא מתרוקן--------</li>
-        <li>delete- how to update or change the recipes</li>
+        <li>delete- how to update the recipes</li>
         <li>האם להעביר את הקריאות שרת לרידקס ואיך</li>
-        <li>הוספת קטגוריה</li>
-
         <li>קניות</li>
 
 
