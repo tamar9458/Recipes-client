@@ -20,15 +20,16 @@ let schema = yup
 
 
 export default function App() {
-    const {state}=useLocation();
-    const userFromLogin=state;
+    const {state} = useLocation();
+    //const userFromLogin=state;
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues:{userFromLogin}
+        defaultValues: { Username: state?.userName }
     })
     const navigate = useNavigate();
     

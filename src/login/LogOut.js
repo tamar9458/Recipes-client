@@ -8,6 +8,7 @@ export default ()=>{
     const dispatch=useDispatch();
     const navigate = useNavigate();
     function logOut(){
+        localStorage.setItem("user",null)
         dispatch({ type: Actions.SET_USER, user: null});
         navigate("../");
     }
