@@ -12,50 +12,34 @@ import * as yup from "yup"
 import { FormField, Form } from 'semantic-ui-react'
 import AddCategory from './AddCategory';
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Del } from '../service/shopping';
+import { deleteRecipe, getRecipes } from '../service/recipes';
 
 
 export default ({byUser}) => {
-    const [Categories, setCategories] = useState([]);
-    const [recipes, setRecipes] = useState([]);
+    //const [Categories, setCategories] = useState([]);
+    //const [recipes, setRecipes] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedDuration, setSelectedDuration] = useState(null);
     const [selectedDifficulty, setSelectedDifficulty] = useState(null);
     const [IfbyUser, setIfByUser] = useState(byUser ? true : false);
     const [myRecipes, setMyRecipes] = useState([]);
-    const user = useSelector(state => state.user.user)
+    const { user, recipes ,Categories} = useSelector(state => ({
+        user: state.user.user,
+        recipes: state.recipe.recipes,
+        Categories:state.category.categories
+    }));
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    //const RecipesFromRedux = useSelector(state => state.recipe.recipes);
     const {state} =useLocation();
     const NeedSetCats=state;
-    let NeedSetRec=false;
+    
 
-    function getRecipes() {
-        if (!byUser) {
-            axios.get('http://localhost:8080/api/recipe').then((r) => { setRecipes(r.data); })
-            console.log(recipes)
-        }
-        else {
-            console.log("true")
-            axios.get('http://localhost:8080/api/recipe').then((r) => { setRecipes(r.data.filter((x) => x.UserId == user?.Id)) })
-            console.log(recipes)
-        }
-        axios.get('http://localhost:8080/api/category').then((c) => { setCategories(c.data) })
-    }
+    
     useEffect(() => {
-        getRecipes();
+        dispatch(getRecipes(byUser,user));
     }, [])
-    useEffect(() => {
-        if(NeedSetCats===true){
-            axios.get('http://localhost:8080/api/category').then((c) => { setCategories(c.data) })
-            console.log("setCats");
-        }        
-    }, [Categories,NeedSetCats])
-
-    const deleteRecipe = (x) => {
-         dispatch({ type: "DELETE_RECIPE", data: x.Id })
-         getRecipes();
-    }
+   
     
     const handleCategoryChange = (event) => {
         // הפעולה הזו תתבצע כאשר משתמש בוחר אפשרות בתיבת הבחירה
@@ -84,12 +68,7 @@ export default ({byUser}) => {
         const selectedDifficulty = event.target.value;
         setSelectedDifficulty(selectedDifficulty);
     };
-    const sort = () => {
-        console.log("sorting")
-        setRecipes(recipes.sort((a, b) => a.Name.localeCompare(b.Name)));
-        console.log(recipes)
-    }   
-    
+   
     return (<>
 
         <img src={Image} style={{ width: 500 }}></img>
@@ -124,21 +103,20 @@ export default ({byUser}) => {
         </select>
         <p>Selected Difficulty: {selectedDifficulty}</p>
 
-        <button onClick={sort}>sort by alphbetic order</button>
-
-        {recipes.map(x => (!selectedCategory || x.CategoryId == selectedCategory) && (!selectedDuration || checkDuration(x.Duration)) && (!selectedDifficulty || selectedDifficulty == x.Difficulty) ?
+       
+        {recipes?.map(x => (!selectedCategory || x.CategoryId == selectedCategory) && (!selectedDuration || checkDuration(x.Duration)) && (!selectedDifficulty || selectedDifficulty == x.Difficulty) ?
             <div key={x.Id}>
                 <Recipe props={x} />
                 <div>{x.UserId==user.Id?
                     <div>
-                    <button onClick={()=>{ {} }}>delete</button>
+                    <button onClick={()=>{ {dispatch(deleteRecipe(user,x))} }}>delete</button>
                     <button onClick={() => ( 
                     navigate('/recipe/edit',{state: x })
                     // <AddRecipe/>
                     )}>Edit</button>
                     </div>:
                     <div>
-                        <button onClick={()=>{ {} }}disabled={true}>delete</button>
+                        <button onClick={()=>{ {dispatch(deleteRecipe(user,x))} }}disabled={true}>delete</button>
                         <button onClick={() => ( 
                         navigate('/recipe/edit',{state: x })
                         // <AddRecipe/>

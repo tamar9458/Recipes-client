@@ -6,6 +6,8 @@ const initalseState = {
 
 const reducer = (state = initalseState, action) => {
     switch (action.type) {
+        case "SET_CATEGORY":
+            return { ...state, recipes: action.data }
         case "ADD_CATEGORY":
             const cats = [...state.categories];
             console.log(cats)

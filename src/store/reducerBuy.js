@@ -6,53 +6,49 @@ const initalseState = {
     buies: [],
 }
 const reducerBuy = (state = initalseState, action) => {
+    console.log('reducerBuy', state, action)
     switch (action.type) {
         case "SET_BUY": {
-            
-            const buies = state.buies.filter(x => x.userId === action.userId);
+            const buies = action.data
             return { ...state, buies }
         }
-        
-           case "ADD_BUY": {
-            console.log("reducer", action.data);
-            axios.post(`http://localhost:8080/api/bay`, { Name: action.data.Name, UserId:action.data.user, Count: 1 })
-                .then((res) => {
-                    const buies = [...state.buies];
-                    buies?.push(action.data);
-                    alert(`you add ${action.data.Name}`)
-                    state={...buies};
-                    
-                }).catch((error) => console.error(error))
-               return { ...state }
-        }
+
+        // case "ADD_BUY": {
+        //     console.log("reducer", action.data);
+            
+        //     const buies = [...state.buies];
+        //     buies?.push(action.data);
+        //     return { ...state, buies }
+        // }
         case "EDIT_BUY": {
-            axios.post(`http://localhost:8080/api/bay`,{Name: action.data.Name, UserId:action.data.user, Count: action.data.Count})
-            .then((res) => {
-                const buies = [...state.buies];
-                    buies.push(action.data);
-                    state={...buies};                    
-                })
-            .catch((error) => console.error(error))
-            return { ...state }
-          
+            // const buies = [...state.buies];
+            // buies.push(action.data);
+            // return { ...state, buies}
+            const buies = [...state.buies];
+            let index = buies.findIndex(x => x.Name == action.data.Name)
+            if (index == -1) {
+                buies.push(action.data);
+            }
+            else {
+                if (action.data.Count==0) { 
+                    buies.splice(index, 1)
+                }
+                else {
+                    buies[index] = action.data
+                }
+            }
+            return { ...state, buies }
+
         }
         case "DELETE_BUY": {
             console.log("delete: ", action.data)
-            // const recipes = [...state.recipes];
-            axios.post(`http://localhost:8080/api/bay/delete/:${action.data.user}`)
-                .then(() => {                     
-                // const buies = [...state.buies];
-                // const findIndex = buies.findIndex(x => x.Name === action.data?.Name);
-                // buies.splice(findIndex,2);
-                 console.log("deleted!!!",action.data.Name)
-                // state={...buies}
-               
-                })
-                .catch((error) => { console.error(error) }) 
-                return null;
-                return { ...state}
+            
+                const buies = [...state.buies];
+                 const findIndex = buies.findIndex(x => x.Name === action.data?.Name);
+                 buies.splice(findIndex,1);
+            return { ...state ,buies}
         }
-        
+
         default: return { ...state }
     }
 }

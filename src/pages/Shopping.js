@@ -9,50 +9,27 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 //import Image from '../images/s.jpg'
 import Recipes from "./Recipes";
+import { Add, Del, getAllBuies } from "../service/shopping";
 
 //import 'semantic-ui-css/semantic.min.css'
 
 
 export default () => {
-    const [buies, setBuies] = useState([]);
-    const user = useSelector(state => state.user.user);
+    const { user, buies } = useSelector(state => ({
+        user: state.user.user,
+        buies: state.buy.buies
+    }));
     const dispatch = useDispatch();
-    const [needSetBuy, setNeedSetBuy] = useState(false);
-    const [currentBuyId, setCurrentBuyId] = useState(-1);
-    const [currentBuyCount, setCurrentBuyCount] = useState(-1);
-    const [option, setOption] = useState("non")
 
-    function getAllBuies() {
-        axios.get(`http://localhost:8080/api/bay/${user.Id}`)
-            .then((res) => { console.log(res.data); setBuies(res.data); })
-            .catch((error) => console.error(error));
-    }
     useEffect(() => {
-        getAllBuies();
+        if (!buies.length) {
+            dispatch(getAllBuies(user));
+        }
     }, [])
 
 
-    function Del(p) {
 
-        axios.post(`http://localhost:8080/api/bay/delete/${p.Id}`)
-            .then(() => {
-                getAllBuies();
-            }).catch((error) => console.error(error))
 
-        //    dispatch({ type: "DELETE_BUY", data: { Name: p.Name ,UserId:user.Id,Id:p.Id } })
-
-    }
-    function Add(p, c) {
-        if (c == 0)
-            Del(p)
-        else {
-            axios.post(`http://localhost:8080/api/bay`, { Name: p.Name, UserId: user.Id, Count: c }).then(() => {
-                //// dispatch({ type: "EDIT_BUY", data: { Name: p.Name, Count: c } })
-                getAllBuies();
-            }).catch((error) => console.error(error))
-        }
-
-    }
 
     return <>
         shopping
@@ -61,11 +38,11 @@ export default () => {
                 <div key={id}>
                     <div>{x.Name}</div>
                     <div>{x.Count}</div>
-                    <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { Add(x, x.Count + 1) }}>
+                    <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x, 1)) }}>
                         +
-                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { Add(x, x.Count - 1) }}>
+                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,  - 1)) }}>
                         -
-                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { Del(x) }}>
+                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Del(user, x)) }}>
                         I had
                     </Button>
                 </div>
