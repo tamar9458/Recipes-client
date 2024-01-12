@@ -1,89 +1,78 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import Image from '../images/img.jpg'
 import axios from 'axios'
-import Recipe from '../Recipe';
-import { useNavigate ,useLocation} from 'react-router-dom';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useFieldArray, useForm } from "react-hook-form"
-import * as yup from "yup"
+import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+//import Button from '@mui/material/Button';
+import CheckIcon from '@mui/icons-material/Check';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+//import Image from '../images/s.jpg'
+import Recipes from "./Recipes";
+
 //import 'semantic-ui-css/semantic.min.css'
-import { FormField, Form } from 'semantic-ui-react'
-import AddCategory from './AddCategory';
+
 
 export default () => {
-    const [buies,setBuies]=useState([]);
-    const [needSetBuy,setNeedSetBuy]=useState(false);
-    const [currentBuyId,setCurrentBuyId]=useState(-1);
-    const [currentBuyCount,setCurrentBuyCount]=useState(-1);
-    const [option,setOption]=useState("non")
+    const [buies, setBuies] = useState([]);
     const user = useSelector(state => state.user.user);
     const dispatch = useDispatch();
-    useEffect(() => {
-        console.log("user",user);
-        console.log("userId",user.Id);
+    const [needSetBuy, setNeedSetBuy] = useState(false);
+    const [currentBuyId, setCurrentBuyId] = useState(-1);
+    const [currentBuyCount, setCurrentBuyCount] = useState(-1);
+    const [option, setOption] = useState("non")
+
+    function getAllBuies() {
         axios.get(`http://localhost:8080/api/bay/${user.Id}`)
-        .then((res) => {
-              setBuies(res.data); 
-            })
-        .catch((error) => console.error(error));
-
-         //dispatch({ type: "SET_BUY", data: user.Id });
-    }, [])
+            .then((res) => { console.log(res.data); setBuies(res.data); })
+            .catch((error) => console.error(error));
+    }
     useEffect(() => {
-        if(needSetBuy){
-            let newBuies=buies;
-            let index=newBuies.findIndex(x=>x.Id===currentBuyId);
-            if(option==="del"){
-                newBuies.splice(index,1);
-            }
-            else if(option==="add"||option==="sub"){            
-                newBuies[index].Count=currentBuyCount;
-            } 
-            setBuies(newBuies);
-            setNeedSetBuy(false);
-        }
+        getAllBuies();
+    }, [])
 
-    }, [currentBuyId])
-    //  function Set
-       
-    // }
-    function Del(p){
 
-        axios.post(`http://localhost:8080/api/bay/delete/:${p.Id}`).then(()=>{
-            dispatch({ type: "DELETE_BUY", data: { Name: p.Name ,UserId:user.Id,Id:p.Id } })
-            setOption("del")
-            setNeedSetBuy(true)
-            setCurrentBuyId(p.Id)
-            console.log("del after dispatc",buies);
-        })
-       
+    function Del(p) {
+
+        axios.post(`http://localhost:8080/api/bay/delete/${p.Id}`)
+            .then(() => {
+                getAllBuies();
+            }).catch((error) => console.error(error))
+
+        //    dispatch({ type: "DELETE_BUY", data: { Name: p.Name ,UserId:user.Id,Id:p.Id } })
 
     }
-    function Add(p,c){
-        if(c==0)
+    function Add(p, c) {
+        if (c == 0)
             Del(p)
         else {
-        axios.post(`http://localhost:8080/api/bay`,{ Name: p.Name, UserId:user.Id, Count: c }).then(()=>{
-            dispatch({ type: "EDIT_BUY", data: { Name: p.Name, Count: c } })
-            if(c<p.Count)
-                setOption("sub")
-            else 
-                setOption("add")
-            setCurrentBuyCount(c)
-            setNeedSetBuy(true)
-            setCurrentBuyId(p.Id)
-            console.log("add after dispatc",buies);
-        })
+            axios.post(`http://localhost:8080/api/bay`, { Name: p.Name, UserId: user.Id, Count: c }).then(() => {
+                //// dispatch({ type: "EDIT_BUY", data: { Name: p.Name, Count: c } })
+                getAllBuies();
+            }).catch((error) => console.error(error))
         }
-       
+
     }
-   
+
     return <>
         shopping
+        <div>
+            {buies?.map((x, id) => (
+                <div key={id}>
+                    <div>{x.Name}</div>
+                    <div>{x.Count}</div>
+                    <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { Add(x, x.Count + 1) }}>
+                        +
+                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { Add(x, x.Count - 1) }}>
+                        -
+                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { Del(x) }}>
+                        I had
+                    </Button>
+                </div>
+            ))}
+        </div>
 
-        {buies?.map((x, id) => 
+        {/* {buies?.map((x, id) => 
             <div key={id}>
                 <div>{x.Name}</div>
                 <div>{x.Count}</div>
@@ -91,6 +80,6 @@ export default () => {
                 <button onClick={() => { Add(x,x.Count-1) }}>-</button>
                 <button onClick={() => { Del(x) }}>I had</button>
             </div>
-        )}
+        )} */}
     </>
 }

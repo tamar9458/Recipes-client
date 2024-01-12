@@ -1,7 +1,36 @@
 .App {
   text-align: center;
 }
+/*
+.recipes {
+  background-image: none;
+   background-image: url(./images/imgbackground.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
 
+.p {
+  height: 100vh;
+}
+
+.shopping {
+  background-image: none;
+   background-size: cover;
+  background-repeat: no-repeat;
+  height: 150vh; 
+}
+
+.add {
+  background-image: none;
+  background-image: url(./images/img3.webp);
+  height: 100vh;
+  background-size: cover;
+}
+
+.form {
+  padding:15%;
+}
+*/
 .App-logo {
   height: 40vmin;
   pointer-events: none;

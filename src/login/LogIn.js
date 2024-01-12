@@ -1,5 +1,5 @@
 
-import { Link, useNavigate ,useLocation} from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import SignUp from "./SignUp"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -11,6 +11,11 @@ import axios from "axios"
 import { useDispatch } from "react-redux"
 import * as Actions from "../store/action"
 import Header from "../Header"
+import 'semantic-ui-css/semantic.min.css'
+import { useSelector } from "react-redux";
+import { FormField, Form } from 'semantic-ui-react'
+import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 const schema = yup
     .object({
         userName: yup.string().required(),
@@ -29,38 +34,38 @@ export default function App() {
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues:{userName:state?.Username,password:state?.Password}
+        defaultValues: { userName: state?.Username, password: state?.Password }
     })
     const onSubmit = (data) => {
-        axios.post('http://localhost:8080/api/user/login', 
-        { Username: data.userName, Password: data.password })
+        axios.post('http://localhost:8080/api/user/login',
+            { Username: data.userName, Password: data.password })
             .then((d) => {
                 console.log(d)
                 dispatch({ type: Actions.SET_USER, user: d.data })
-                alert(`HELLO ${ data.userName}`)
-                localStorage.setItem("user",JSON.stringify(d.data))
+                alert(`HELLO ${data.userName}`)
+                localStorage.setItem("user", JSON.stringify(d.data))
                 navigate("/homepage")
             }).catch((error) => {
                 alert(error.response.data)
-                navigate("/signUp",{state:data})
+                navigate("/signUp", { state: data })
             })
     }
     return (
 
         <form onSubmit={handleSubmit(onSubmit)}>
-            <label>User Name: </label>
-            <input placeholder={"user name"} type="text" {...register("userName")} />
-            <p>{errors.userName?.message}</p>
-
-            <label>Password: </label>
-            <input type="password"{...register("password")} />
-            <p>{errors.password?.message}</p>
-
+            <TextField style={{ width: '20%' }} label="User Name " {...register("userName")} error={!!errors.userName} helperText={errors.userName?.message} />
+            <br />
+          
+            <TextField style={{ width: '20%' }} label="Password " {...register("password")} error={!!errors.password} helperText={errors.password?.message} />
+            <br />
+            
+            <br />
             <Link to={'/signUp'}>Don't have an account yet? Sign Up now</Link>
             <br />
 
-            <input type="submit" />
+            <Button variant="contained" color="primary" type="submit">Submit</Button>
+
         </form>
-        
+
     )
 }

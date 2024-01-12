@@ -30,14 +30,13 @@ function App() {
 
         <Route path="/shopping" element={<Shopping />}></Route>        
       </Routes>
-      <h1>!!!!!!!!!!!אנחנו מתחילות את הפרוייקט בשעה טובה ומוצלחת</h1>
-      <h2>בעזרת ה' ובס"ד אנחנו נעשה אותו בקלות ובשמחה ובהנאה מרובה</h2>
-      <h3>מיליון הצלחות</h3>
+     
       <ul>
-        למתרגלת:
-        <li>delete- how to update the recipes</li>
-        <li>האם להעביר את הקריאות שרת לרידקס ואיך</li>
-        <li>קניות</li>
+        לשאול:
+        <li>delete- how to update the recipes,buies</li>
+        <li>קריאות שרת רק ברידקס??? ,איך??</li>
+        <li>מעבר ישיר בין כל המתכונים למתכונים שלי</li>
+        <li>עיצובים...</li>
 
 
       </ul>

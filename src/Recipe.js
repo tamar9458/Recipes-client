@@ -29,7 +29,7 @@ export default (props)=>{
             <div>{x.Name} {x.Count} {x.Type}</div>
             <button onClick={()=>AddToBuy(x.Name)}>buy</button>
         </div>)}
-    Instructions: {props.props.Instructions.map((x,i)=><div key={i}>{x.Inst}</div>)}
+    Instructions: {props.props.Instructions.map((x,i)=><div key={i}>{x}</div>)}
   
     <img src={props.props.Img}></img>
     
