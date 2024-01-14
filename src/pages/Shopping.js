@@ -38,9 +38,9 @@ export default () => {
                 <div key={id}>
                     <div>{x.Name}</div>
                     <div>{x.Count}</div>
-                    <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x, 1)) }}>
+                    <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,x.Count+ 1)) }}>
                         +
-                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,  - 1)) }}>
+                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,x.Count  - 1)) }}>
                         -
                     </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Del(user, x)) }}>
                         I had

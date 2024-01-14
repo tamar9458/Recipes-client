@@ -9,9 +9,9 @@ import axios from 'axios';
 //import { FormField, Form } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { useSelector } from "react-redux";
-import { FormField, Form } from 'semantic-ui-react'
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { AddCategory } from '../service/category';
 export default () => {
 
     const navigate = useNavigate();
@@ -20,10 +20,9 @@ export default () => {
         Categorys: yup.array().of(yup.object(
             {
                 Name: yup.string().required(),
-                //Id: yup.number().required(),
             }))
     }).required();
-    const { register, control, handleSubmit, formState: { errors }
+    const { register, control, reset, handleSubmit, formState: { errors }
     } = useForm({
         resolver: yupResolver(schema),
     })
@@ -34,16 +33,9 @@ export default () => {
     const onSubmit = (data) => {
         console.log("data.Categorys[0].Name", data?.Categorys[0]?.Name);
         for (let index = 0; index < data?.Categorys.length; index++) {
-            axios.post('http://localhost:8080/api/category', { Name: data?.Categorys[index]?.Name })
-                .then((d) => {
-                    dispatch({ type: "ADD_CATEGORY", data: d })
-                    console.log("add cat 2", d)
-                }).catch((error) => {
-                    console.error(error)
-                })
+            dispatch(AddCategory(data?.Categorys[index]))
         }
-        navigate('/recipe', { state: true })
-
+        reset()
 
     }
 
@@ -65,11 +57,11 @@ export default () => {
                     </div>
                 ))}
             </div>
-            <Button variant="outlined"  onClick={()=>appendCategorys({ Name: "" })}>
-            Add Category 
-        </Button>
+            <Button variant="outlined" onClick={() => appendCategorys({ Name: "" })}>
+                Add Category
+            </Button>
             {/* <button onClick={() => appendCategorys({ Name: "" })}>Add Category</button> */}
-            
+
             <Button variant="contained" color="primary" type="submit">Submit</Button>
 
             {/* <input type="submit" value={"add"} /> */}

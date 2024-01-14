@@ -17,20 +17,18 @@ export const getRecipes = (byUser, user) => {
             axios.get('http://localhost:8080/api/recipe')
             .then((res) => {
                 dispatch({ type: "SET_RECIPE_USER", userId: user.Id }) 
-                //SET_RECIPE_USER
-               // setRecipes(r.data.filter((x) => x.UserId == user?.Id)) 
             })
             .catch((error) =>
                 console.error(error)
             )
         }
-         axios.get('http://localhost:8080/api/category')
-         .then((c) => { 
-            dispatch({type:"SET_CATEGORY" ,data:c})
-         })
-         .catch((error) =>
-         console.error(error)
-     )
+    //      axios.get('http://localhost:8080/api/category')
+    //      .then((c) => { 
+    //         dispatch({type:"SET_CATEGORY" ,data:c})
+    //      })
+    //      .catch((error) =>
+    //      console.error(error)
+    //  )
 
     }
 }

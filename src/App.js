@@ -9,7 +9,7 @@ import Recipes from './pages/Recipes';
 import Shopping from './pages/Shopping';
 import AddRecipe from './pages/AddRecipe';
 import LogOut from './login/LogOut';
-
+import Recipe from './Recipe';
 function App() {
 
   return (
@@ -26,6 +26,7 @@ function App() {
         <Route path="/recipe/:user" element={<Recipes byUser={true}/>}></Route>
         <Route path="/recipe/add" element={<AddRecipe />}></Route>
         <Route path="/recipe/edit" element={<AddRecipe />}></Route>
+        <Route path="/recipe/detail" element={<Recipe />}></Route>
         <Route path="/logOut" element={<LogOut/>}></Route>
 
         <Route path="/shopping" element={<Shopping />}></Route>        

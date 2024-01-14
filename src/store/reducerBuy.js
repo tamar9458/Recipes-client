@@ -26,6 +26,7 @@ const reducerBuy = (state = initalseState, action) => {
             // return { ...state, buies}
             const buies = [...state.buies];
             let index = buies.findIndex(x => x.Name == action.data.Name)
+            console.log("reducer buy edit count",action.data.Count);
             if (index == -1) {
                 buies.push(action.data);
             }

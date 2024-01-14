@@ -5,15 +5,16 @@ const initalseState = {
 }
 
 const reducer = (state = initalseState, action) => {
+    console.log("reducer cats",action.data);
     switch (action.type) {
-        case "SET_CATEGORY":
-            return { ...state, recipes: action.data }
-        case "ADD_CATEGORY":
+        case "SET_CATEGORY":{
+            const cats=action.data;
+            return { ...state, categories:cats}
+        }
+        case "ADD_CATEGORY":{
             const cats = [...state.categories];
-            console.log(cats)
             cats.push(action.data);
-            console.log(action.data)
-            return { ...state, cats }
+            return { ...state, cats }}
         default: return { ...state }
     }
 }
