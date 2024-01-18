@@ -48,7 +48,7 @@ export default () => {
             <div>
                 {Categorys?.map((item, i) => (
                     <div key={i}>
-                        <TextField type="text" placeholder="Category name:"   margin="dense" {...register(`Categorys.${i}.Name`)} />
+                        <TextField type="text" placeholder="Category name:"   margin="dense" color="secondary"{...register(`Categorys.${i}.Name`)} />
                     </div>
                 ))}
             </div>

@@ -3,12 +3,11 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import axios from 'axios'
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-//import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add';//פלוס
 import RemoveIcon from '@mui/icons-material/Remove';
 import Recipes from "./recipe/Recipes";
-import { Add, Del, getAllBuies } from "../service/shopping";
+import { Add, Del, getAllBuies } from "../service/shopping";//מינוס
 import DeleteIcon from '@mui/icons-material/Delete';//פח
 
 
@@ -27,10 +26,6 @@ export default () => {
         }
     }, [])
 
-
-
-
-
     return <>
         shopping
         <div>
@@ -38,21 +33,11 @@ export default () => {
                 <div key={id}>
                     <div>{x.Name}</div>
                     <div>{x.Count}</div>
-                    <Button variant="outlined" color="secondary" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,x.Count+ 1)) }}></Button> 
-                    <Button variant="outlined" color="secondary" startIcon={<RemoveIcon />} onClick={() => { dispatch(Add(user, x,x.Count  - 1)) }}></Button>
-                     <Button variant="outlined" color="secondary" startIcon={<DeleteIcon />} onClick={() => { dispatch(Del(user, x)) }}></Button>
+                    <Button variant="outlined" color="secondary" onClick={() => { dispatch(Add(user, x, x.Count + 1)) }}><AddIcon /></Button>
+                    <Button variant="outlined" color="secondary" onClick={() => { dispatch(Add(user, x, x.Count - 1)) }}><RemoveIcon /></Button>
+                    <Button variant="outlined" color="secondary" onClick={() => { dispatch(Del(user, x)) }}><DeleteIcon /></Button>
                 </div>
             ))}
         </div>
-
-        {/* {buies?.map((x, id) => 
-            <div key={id}>
-                <div>{x.Name}</div>
-                <div>{x.Count}</div>
-                <button onClick={() => { Add(x,x.Count+1) }}>+</button>
-                <button onClick={() => { Add(x,x.Count-1) }}>-</button>
-                <button onClick={() => { Del(x) }}>I had</button>
-            </div>
-        )} */}
     </>
 }

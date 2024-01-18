@@ -96,7 +96,7 @@ export default () => {
                 margin="dense"{...register("Description")}
                  error={!!errors.Description} helperText={errors.Description?.message} />
                 <br />
-                <FormControl style={{ width: '20%' }} margin="dense">
+                <FormControl style={{ width: '20%' }} margin="dense" color="secondary">
                     <InputLabel>CategoryId</InputLabel>
                     <Select {...register("CategoryId")} error={!!errors.CategoryId} displayEmpty>
                         {Categories.map((x) => (
@@ -115,7 +115,7 @@ export default () => {
                 margin="dense" type="input" {...register("Duration")} 
                 error={!!errors.Duration} helperText={errors.Duration?.message} />
                 <br />
-                <FormControl style={{ width: '20%' }} margin="dense">
+                <FormControl style={{ width: '20%' }} margin="dense" color="secondary">
                     <InputLabel>Difficulty</InputLabel>
                     <Select {...register("Difficulty")} error={!!errors.Difficulty} displayEmpty helperText={errors.Difficulty?.message}>
                         <MenuItem value={1}>קל</MenuItem>
@@ -128,9 +128,9 @@ export default () => {
                 <div>
                     {Ingrident?.map((item, i) => (
                         <div key={i}>
-                            <TextField type="text" placeholder="product name:" margin="dense" {...register(`Ingrident.${i}.Name`)} />
-                            <TextField placeholder="count:" margin="dense"{...register(`Ingrident.${i}.Count`)} />
-                            <TextField type="text" placeholder="type:" margin="dense" {...register(`Ingrident.${i}.Type`)} />
+                            <TextField type="text" placeholder="product name:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Name`)} />
+                            <TextField placeholder="count:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Count`)} />
+                            <TextField type="text" placeholder="type:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Type`)} />
                         </div>
                     ))}
                 </div>
@@ -142,7 +142,7 @@ export default () => {
                     <label>Instructions:</label>
                     {Instructions?.map((item, index) => (
                         <div key={index}>
-                            <TextField type="text" placeholder="enter Instruction:" margin="dense"{...register(`Instructions.${index}`)} />
+                            <TextField type="text" placeholder="enter Instruction:" margin="dense" color="secondary"{...register(`Instructions.${index}`)} />
 
                         </div>
                     ))}

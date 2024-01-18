@@ -14,7 +14,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header prop={true}/>
+      <header><Header prop={true}/></header>
+      
       <hr/>
       <Routes>
         <Route path="/login" element={<Login />}></Route>

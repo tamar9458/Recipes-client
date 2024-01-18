@@ -9,7 +9,11 @@ import AddCategory from './AddCategory';
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { deleteRecipe, getRecipes } from '../../service/recipes';
 import { getAllCategories } from '../../service/category';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search';//חיפוש
+import CreateIcon from '@mui/icons-material/Create';//עריכה
+import DeleteIcon from '@mui/icons-material/Delete';//פח
+import MenuIcon from '@mui/icons-material/Menu';//תפריט
+
 
 export default ({ byUser }) => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -105,17 +109,10 @@ export default ({ byUser }) => {
                 <div key={x.Id}>
                     <p>{x.Name}</p>
                     <img src={x.Img}></img><br />
-                    <Button variant="outlined" color="secondary" onClick={() => { navigate('/recipe/detail', { state: x }) }}>Show</Button>
-                    <div>{x.UserId == user.Id ?
-                        <div>
-                            <Button variant="outlined" color="secondary" onClick={() => { { dispatch(deleteRecipe(user, x)) } }}>delete</Button>
-                            <Button variant="outlined" color="secondary" onClick={() => (navigate('/recipe/edit', { state: x }))}>Edit</Button>
-                        </div> :
-                        <div>
-                            <Button variant="outlined" color="secondary" onClick={() => { { dispatch(deleteRecipe(user, x)) } }} disabled={true}>delete</Button>
-                            <Button variant="outlined" color="secondary" onClick={() => (navigate('/recipe/edit', { state: x }))} disabled={true}>Edit</Button>
-                        </div>
-                    }</div>
+                    <Button variant="outlined" color="secondary" startIcon={<MenuIcon/>}onClick={() => { navigate('/recipe/detail', { state: x }) }}>Show</Button>
+                    <Button variant="outlined" color="secondary" startIcon={<DeleteIcon />} onClick={() => { { dispatch(deleteRecipe(user, x)) } }} disabled={x.UserId != user.Id}>delete</Button>
+                    <Button variant="outlined" color="secondary" startIcon={<CreateIcon />} onClick={() => (navigate('/recipe/edit', { state: x }))} disabled={x.UserId != user.Id}>Edit</Button>
+
                 </div>
                 : null)}
 
