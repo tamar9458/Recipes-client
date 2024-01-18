@@ -1,4 +1,4 @@
-import Test_fieldArray from '../Test_fieldArray'
+//import Test_fieldArray from '../../Test_fieldArray'
 import { useFieldArray, useForm } from "react-hook-form"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from 'react'
@@ -88,11 +88,15 @@ export default () => {
         <>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-                <TextField style={{ width: '20%' }} label="Recipe Name " {...register("Name")} error={!!errors.Name} helperText={errors.Name?.message} />
+                <TextField style={{ width: '20%' }} label="Recipe Name " 
+               margin="dense" {...register("Name")}
+                 error={!!errors.Name} helperText={errors.Name?.message} />
                 <br />
-                <TextField style={{ width: '20%' }} label="Description" {...register("Description")} error={!!errors.Description} helperText={errors.Description?.message} />
+                <TextField style={{ width: '20%' }} label="Description" 
+                margin="dense"{...register("Description")}
+                 error={!!errors.Description} helperText={errors.Description?.message} />
                 <br />
-                <FormControl style={{ width: '20%' }}>
+                <FormControl style={{ width: '20%' }} margin="dense">
                     <InputLabel>CategoryId</InputLabel>
                     <Select {...register("CategoryId")} error={!!errors.CategoryId} displayEmpty>
                         {Categories.map((x) => (
@@ -103,11 +107,15 @@ export default () => {
                     </Select>
                 </FormControl>
                 <br />
-                <TextField style={{ width: '20%' }} label="Img URL" {...register("Img")} error={!!errors.Img} helperText={errors.Img?.message} />
+                <TextField style={{ width: '20%' }} label="Img URL" 
+                margin="dense"{...register("Img")} 
+                error={!!errors.Img} helperText={errors.Img?.message} />
                 <br />
-                <TextField style={{ width: '20%' }} label="Duration" type="input" {...register("Duration")} error={!!errors.Duration} helperText={errors.Duration?.message} />
+                <TextField style={{ width: '20%' }} label="Duration"
+                margin="dense" type="input" {...register("Duration")} 
+                error={!!errors.Duration} helperText={errors.Duration?.message} />
                 <br />
-                <FormControl style={{ width: '20%' }}>
+                <FormControl style={{ width: '20%' }} margin="dense">
                     <InputLabel>Difficulty</InputLabel>
                     <Select {...register("Difficulty")} error={!!errors.Difficulty} displayEmpty helperText={errors.Difficulty?.message}>
                         <MenuItem value={1}>קל</MenuItem>
@@ -120,30 +128,30 @@ export default () => {
                 <div>
                     {Ingrident?.map((item, i) => (
                         <div key={i}>
-                            <TextField type="text" placeholder="product name:"  {...register(`Ingrident.${i}.Name`)} />
-                            <TextField placeholder="count:" {...register(`Ingrident.${i}.Count`)} />
-                            <TextField type="text" placeholder="type:" {...register(`Ingrident.${i}.Type`)} />
+                            <TextField type="text" placeholder="product name:" margin="dense" {...register(`Ingrident.${i}.Name`)} />
+                            <TextField placeholder="count:" margin="dense"{...register(`Ingrident.${i}.Count`)} />
+                            <TextField type="text" placeholder="type:" margin="dense" {...register(`Ingrident.${i}.Type`)} />
                         </div>
                     ))}
                 </div>
 
-                <Button variant="outlined" startIcon={<AddIcon />} onClick={() => appendIngridents({ Name: "", Count: 0, Type: "" })}>
+                <Button variant="outlined" startIcon={<AddIcon />} color="secondary" onClick={() => appendIngridents({ Name: "", Count: 0, Type: "" })}>
                     Add ingrident
                 </Button>
                 <div>
                     <label>Instructions:</label>
                     {Instructions?.map((item, index) => (
                         <div key={index}>
-                            <TextField type="text" placeholder="enter Instruction:" {...register(`Instructions.${index}`)} />
+                            <TextField type="text" placeholder="enter Instruction:" margin="dense"{...register(`Instructions.${index}`)} />
 
                         </div>
                     ))}
                 </div>
-                <Button variant="outlined" startIcon={<AddIcon />} onClick={() => appendInstructions(" ")}>
+                <Button variant="outlined" startIcon={<AddIcon />} color="secondary" onClick={() => appendInstructions(" ")}>
                     add Instruction
                 </Button>
                 <br />
-                <Button variant="contained" color="primary" type="submit">Submit</Button>
+                <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
             </form>
         </>

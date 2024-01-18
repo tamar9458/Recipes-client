@@ -5,19 +5,17 @@ import Header from './Header';
 import Login from './login/LogIn';
 import Signin from './login/SignUp';
 import HomePage from './pages/HomePage';
-import Recipes from './pages/Recipes';
+import Recipes from './pages/recipe/Recipes';
 import Shopping from './pages/Shopping';
-import AddRecipe from './pages/AddRecipe';
+import AddRecipe from './pages/recipe/AddRecipe';
 import LogOut from './login/LogOut';
-import Recipe from './Recipe';
+import Recipe from './pages/recipe/Recipe';
 function App() {
 
   return (
     <div className="App">
       <Header prop={true}/>
       <hr/>
-   
-
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signUp" element={<Signin />}></Route>
@@ -28,18 +26,12 @@ function App() {
         <Route path="/recipe/edit" element={<AddRecipe />}></Route>
         <Route path="/recipe/detail" element={<Recipe />}></Route>
         <Route path="/logOut" element={<LogOut/>}></Route>
-
         <Route path="/shopping" element={<Shopping />}></Route>        
       </Routes>
      
       <ul>
-        לשאול:
-        <li>delete- how to update the recipes,buies</li>
-        <li>קריאות שרת רק ברידקס??? ,איך??</li>
         <li>מעבר ישיר בין כל המתכונים למתכונים שלי</li>
         <li>עיצובים...</li>
-
-
       </ul>
     </div>
   );

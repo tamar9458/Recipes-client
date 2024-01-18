@@ -1,24 +1,23 @@
 import axios from 'axios';
 
-export const getAllCategories = () =>{
+export const getAllCategories = () => {
     return dispatch => {
         axios.get('http://localhost:8080/api/category')
-        .then((c) => { 
-            console.log("get all cats server",c.data);
-        dispatch({type:"SET_CATEGORY" ,data:c.data})
-        })
-        .catch((error) =>
-        console.error(error))
+            .then((c) => {
+                dispatch({ type: "SET_CATEGORY", data: c.data })
+            })
+            .catch((error) =>
+                console.error(error))
     }
 }
-export const AddCategory=(data)=>{
-    return dispatch =>{
+export const addCategory = (data) => {
+    return dispatch => {
         axios.post('http://localhost:8080/api/category', { Name: data.Name })
-        .then((d) => {
-            dispatch({ type: "ADD_CATEGORY", data: d.data })
-           // console.log("add cat 2", d)
-        }).catch((error) => {
-            console.error(error)
-        })
+            .then((d) => {
+                dispatch({ type: "ADD_CATEGORY", data: d.data })
+                dispatch(getAllCategories())
+            }).catch((error) => {
+                console.error(error)
+              })
     }
 }

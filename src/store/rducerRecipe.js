@@ -6,7 +6,8 @@ const initalseState = {
 const reducer = (state = initalseState, action) => {
     switch (action.type) {
         case "SET_RECIPE_USER": {
-            const recipes = state.recipes.filter(x => x.userId === action.userId);
+            console.log();
+            const recipes = state.recipes.filter(x => x.UserId === action.userId);
             return { ...state, recipes }
         }
         case "SET_RECIPE":

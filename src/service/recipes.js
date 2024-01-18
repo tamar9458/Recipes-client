@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export const getRecipes = (byUser, user) => {
     return dispatch => {
+        console.log("buUser in services recipes", byUser, user);
         if (!byUser) {
             axios.get(`http://localhost:8080/api/recipe`)
             .then((res) => {
@@ -22,14 +23,7 @@ export const getRecipes = (byUser, user) => {
                 console.error(error)
             )
         }
-    //      axios.get('http://localhost:8080/api/category')
-    //      .then((c) => { 
-    //         dispatch({type:"SET_CATEGORY" ,data:c})
-    //      })
-    //      .catch((error) =>
-    //      console.error(error)
-    //  )
-
+   
     }
 }
 
@@ -40,8 +34,6 @@ export const deleteRecipe = (user, r) => {
             console.log('delete',r);
             dispatch({ type: "DELETE_RECIPE", data:r })
         }).catch((error) => console.error(error))
-
-    //    
 
 }
 

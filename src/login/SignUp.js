@@ -5,10 +5,19 @@ import axios from "axios"
 import * as yup from "yup"
 import 'semantic-ui-css/semantic.min.css'
 import 'semantic-ui-css/semantic.min.css'
-import { useSelector, useDispatch } from "react-redux";
 import { FormField, Form } from 'semantic-ui-react'
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { addUser, setUser } from "../service/user"
+import Input from '@mui/material/Input';
+//import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircle from '@mui/icons-material/AccountCircle';//איש
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';//מייל
+import CabinIcon from '@mui/icons-material/Cabin';//בית
+import CallIcon from '@mui/icons-material/Call';//טלפון
+import KeyIcon from '@mui/icons-material/Key';//מנעול
+import FingerprintIcon from '@mui/icons-material/Fingerprint';//טביעת אצבע
 
 let schema = yup
     .object({
@@ -17,15 +26,14 @@ let schema = yup
         Adress: yup.string().required(),
         Email: yup.string().email().required(),
         Phone: yup.string().required(),
-        Tz:yup.string().required(),
+        Tz: yup.string().required(),
         Password: yup.string().required(),
     })
     .required()
 
 
 export default function App() {
-    const {state} = useLocation();
-    //const userFromLogin=state;
+    const { state } = useLocation();
     const {
         register,
         handleSubmit,
@@ -36,60 +44,52 @@ export default function App() {
         defaultValues: { Username: state?.userName }
     })
     const navigate = useNavigate();
-    
-    const onSubmit =(data,e)=>{
-        console.log("sdfghjkhgfd")
-              {axios.post('http://localhost:8080/api/user/sighin',{
-                  Username:data.Username,
-                  Password:data.Password,
-                  Name:data.Name,Phone:data.Phone,Email:data.Email,
-                  Tz:data.Tz})
-                  .then((d)=>{console.log(d)
-                    navigate("/login", { state: data })
-                 })
-                  .catch((error) => {
-                alert(error.response.data)
-                reset()
-            })
-    }}
 
+    const onSubmit = (data) => {
+        addUser(data, navigate);
+        //  reset();
+    }
 
     return (
-        
+
         <form onSubmit={handleSubmit(onSubmit)}>
-
-            <label>User Name: </label>
-            <input type="text" placeholder="user name" {...register("Username")} />
-            <p>{errors.Username?.message}</p>
-
-            <label>Name: </label>
-            <input type="text" placeholder="name" {...register("Name")} />
-            <p>{errors.Name?.message}</p>
-
-            <label>Adress: </label>
-            <input placeholder="Adress" {...register("Adress")} />
-            <p>{errors.Adress?.message}</p>
-
-            <label>Email: </label>
-            <input type="email" placeholder="email" {...register("Email")} />
-            <p>{errors.Email?.message}</p>
-
-            <label>Phone:</label>
-            <input type="text" placeholder="phone" minLength={7}{...register("Phone")} />
-            <p>{errors.Phone?.message}</p>
-
-            <label>Tz:</label>
-            <input placeholder="Tz" minLength={9} maxLength={9} type="text" {...register("Tz")} />
-            <p>{errors.Tz?.message}</p>
-
-            <label>Password: </label>
-            <input
-             placeholder="Password"
-            type="password"{...register("Password")} />
-            <p>{errors.Password?.message}</p>
-
-
-            <input type="submit" />
+            <TextField variant="outlined" style={{ width: '20%' }} label="User Name "
+                 margin="dense" {...register("Username")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
+                error={!!errors.Username} helperText={errors.Username?.message} />
+<br/>
+            <TextField variant="outlined" style={{ width: '20%' }} label="Name"
+                 margin="dense" {...register("Name")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
+                error={!!errors.Name} helperText={errors.Name?.message} />
+     <br/>     
+            <TextField variant="outlined" style={{ width: '20%' }} label="Adress"
+                margin="dense"  {...register("Adress")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><CabinIcon /></InputAdornment>), }}
+                error={!!errors.Adress} helperText={errors.Adress?.message} />
+          <br/>
+            <TextField variant="outlined" style={{ width: '20%' }} label="Email"
+                 margin="dense" type="email" {...register("Email")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><AlternateEmailIcon /></InputAdornment>), }}
+                error={!!errors.Email} helperText={errors.Email?.message} />
+<br/>
+            <TextField variant="outlined" style={{ width: '20%' }} label="Phone"
+                 margin="dense" minLength={9} maxLength={9} {...register("Phone")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><CallIcon /></InputAdornment>), }}
+                error={!!errors.Phone} helperText={errors.Phone?.message} />
+          <br/>
+            <TextField variant="outlined" style={{ width: '20%' }} label="Tz"
+                 margin="dense" {...register("Tz")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
+                error={!!errors.Tz} helperText={errors.Tz?.message} />
+          <br/>  
+            <TextField variant="outlined" style={{ width: '20%' }} label="Password"
+                 margin="dense" type="password" {...register("Password")}
+                InputProps={{ startAdornment: (<InputAdornment position="start"><KeyIcon /></InputAdornment>), }}
+                error={!!errors.Password} helperText={errors.Password?.message} />
+          <br/>
+            <Button variant="contained" color="secondary" type="submit">Submit</Button>
+           
         </form>
     )
 }

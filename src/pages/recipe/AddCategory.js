@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css'
 import { useSelector } from "react-redux";
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { AddCategory } from '../service/category';
+import { addCategory } from '../../service/category';
 export default () => {
 
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default () => {
     const onSubmit = (data) => {
         console.log("data.Categorys[0].Name", data?.Categorys[0]?.Name);
         for (let index = 0; index < data?.Categorys.length; index++) {
-            dispatch(AddCategory(data?.Categorys[index]))
+            dispatch(addCategory(data?.Categorys[index]))
         }
         reset()
 
@@ -44,25 +44,19 @@ export default () => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-            {/* {Categorys?.map((item, i) => (
-                <div key={i}>
-                    <input type="text" placeholder="Category name:" {...register(`Categorys.${i}.Name`)} />
-                    <p>{errors.Name?.message}</p>
-                </div>
-            ))} */}
+            
             <div>
                 {Categorys?.map((item, i) => (
                     <div key={i}>
-                        <TextField type="text" placeholder="Category name:"  {...register(`Categorys.${i}.Name`)} />
+                        <TextField type="text" placeholder="Category name:"   margin="dense" {...register(`Categorys.${i}.Name`)} />
                     </div>
                 ))}
             </div>
-            <Button variant="outlined" onClick={() => appendCategorys({ Name: "" })}>
+            <Button variant="outlined" color="secondary" onClick={() => appendCategorys({ Name: "" })}>
                 Add Category
             </Button>
-            {/* <button onClick={() => appendCategorys({ Name: "" })}>Add Category</button> */}
 
-            <Button variant="contained" color="primary" type="submit">Submit</Button>
+            <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
             {/* <input type="submit" value={"add"} /> */}
 

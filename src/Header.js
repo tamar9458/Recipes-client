@@ -3,26 +3,26 @@ import { Link } from "react-router-dom"
 import { useSelector } from "react-redux/es/hooks/useSelector"
 import { useDispatch } from "react-redux";
 import * as Actions from "./store/action"
+import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { useLocation, useNavigate } from "react-router-dom"
+
 export default function ({ prop }) {
     const user = useSelector(state => state.user.user);
-    //const dispatch = useDispatch();
-    // const onLogOut=()=>{
-    //     dispatch({ type: Actions.SET_USER, user:null });
-    //     alert("good buy!!!!")
-    // }
+    const navigate = useNavigate();
     return <>
-        {localStorage.getItem("user")=="null"? 
-        
+        {!user ?
             <div>
-                <Link to={'/login'}>Log in | </Link>
-                <Link to={'/signUp'}>Sign Up</Link></div> :
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/login') }}>Log in</Button>
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/signUp') }}>Sign Up</Button>
+            </div> :
             <div>
-                <Link to={'/homePage'}> Home Page |</Link>
-                <Link to={'/recipe'}> Recipes |</Link>
-                <Link to={'/recipe/:user'}> My Recipes |</Link>
-                <Link to={'/shopping'}> Shopping |</Link>
-                <Link to={'/logOut'}> Change user</Link>
-             </div>
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/homePage') }}>Home Page</Button>
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/recipe') }}> Recipes </Button>
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/recipe/:user') }}>My Recipes </Button>
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/shopping') }}>Shopping</Button>
+                <Button variant="outlined" color="secondary" onClick={() => { navigate('/logOut') }}>Change user</Button>
+
+            </div>
         }
     </>
 }

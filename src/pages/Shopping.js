@@ -7,11 +7,11 @@ import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@m
 import CheckIcon from '@mui/icons-material/Check';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-//import Image from '../images/s.jpg'
-import Recipes from "./Recipes";
+import Recipes from "./recipe/Recipes";
 import { Add, Del, getAllBuies } from "../service/shopping";
+import DeleteIcon from '@mui/icons-material/Delete';//פח
 
-//import 'semantic-ui-css/semantic.min.css'
+
 
 
 export default () => {
@@ -38,13 +38,9 @@ export default () => {
                 <div key={id}>
                     <div>{x.Name}</div>
                     <div>{x.Count}</div>
-                    <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,x.Count+ 1)) }}>
-                        +
-                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,x.Count  - 1)) }}>
-                        -
-                    </Button> <Button variant="outlined" startIcon={<AddIcon />} onClick={() => { dispatch(Del(user, x)) }}>
-                        I had
-                    </Button>
+                    <Button variant="outlined" color="secondary" startIcon={<AddIcon />} onClick={() => { dispatch(Add(user, x,x.Count+ 1)) }}></Button> 
+                    <Button variant="outlined" color="secondary" startIcon={<RemoveIcon />} onClick={() => { dispatch(Add(user, x,x.Count  - 1)) }}></Button>
+                     <Button variant="outlined" color="secondary" startIcon={<DeleteIcon />} onClick={() => { dispatch(Del(user, x)) }}></Button>
                 </div>
             ))}
         </div>
