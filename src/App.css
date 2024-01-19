@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+
 /*
 .recipes {
   background-image: none;
@@ -20,20 +21,140 @@
   height: 150vh; 
 }
 
-.add {
-  background-image: none;
-  background-image: url(./images/img3.webp);
-  height: 100vh;
-  background-size: cover;
-}
+
 
 .form {
   padding:15%;
 }
 */
+.App {
+  background-image: url(./images/homePage2.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  background-color: white;
+  min-height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.container {
+  width: 60%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.welcome {
+  font-size: 130px;
+  color: black;
+  margin-top: 50px;
+  margin-bottom: 85px;
+}
+
+.here {
+  font-size: 35px;
+  color: white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.whiteBack {
+  background-color: white;
+  width: max-content;
+  height: fit-content;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  padding: 15px;
+  margin: 2% 43%;
+}
+
+.logout {
+  flex-direction: column;
+  margin: 2% 43%;
+  padding: 15px;
+}
+.signup {
+  margin: 2% 34%;
+  padding: 5px 90px;
+}
+.cards {
+  width: 60%;
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.shop {
+  flex-direction: row;
+}
+
+.show {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buy {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.add {
+  background-color: white;
+  height: fit-content;
+  width: 50%;
+  margin: 2% 10%;
+  padding: 5%;
+}
+.ingrident{
+display: flex;
+justify-content: space-evenly;
+width: 100%;
+}
+.ingridItem{
+   width: 30%;
+}
+.submitt {
+  margin-top: 2px;
+}
+
+.cardOne {
+  margin: 10px 10px;
+}
+.filter{
+  width: 100%;
+}
+.addButtens{
+  width: 100%;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -42,7 +163,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -51,7 +172,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -61,6 +182,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

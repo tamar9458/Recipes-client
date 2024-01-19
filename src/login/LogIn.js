@@ -34,30 +34,30 @@ export default function App() {
         defaultValues: { userName: state?.Username, password: state?.Password }
     })
     const onSubmit = (data) => {
-        dispatch(setUser(data,navigate));
+        dispatch(setUser(data, navigate));
     }
     return (
+        <div className="whiteBack login">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <TextField style={{ width: '100%' }} label="User Name "
+                    margin="dense" {...register("userName")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
+                    error={!!errors.userName} helperText={errors.userName?.message} />
+                <br />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField style={{ width: '20%' }} label="User Name "
-              margin="dense" {...register("userName")}
-              InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
-              error={!!errors.userName} helperText={errors.userName?.message} />
-            <br />
-          
-            <TextField style={{ width: '20%' }} label="Password "
-               margin="dense" type="password" {...register("password")} 
-               InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
-             error={!!errors.password} helperText={errors.password?.message} />
-            <br />
-            
-            <br />
-            <Link to={'/signUp'}>Don't have an account yet? Sign Up now</Link>
-            <br />
+                <TextField style={{ width: '100%' }} label="Password "
+                    margin="dense" type="password" {...register("password")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
+                    error={!!errors.password} helperText={errors.password?.message} />
+                <br />
 
-            <Button variant="contained" color="secondary" type="submit">Submit</Button>
+                <br />
+                <Link to={'/signUp'}>Don't have an account yet? Sign Up now</Link>
+                <br />
 
-        </form>
+                <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
+            </form>
+        </div>
     )
 }

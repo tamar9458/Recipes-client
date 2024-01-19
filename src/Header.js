@@ -10,6 +10,7 @@ export default function ({ prop }) {
     const user = useSelector(state => state.user.user);
     const navigate = useNavigate();
     return <>
+    <div className="header">
         {!user ?
             <div>
                 <Button variant="outlined" color="secondary" onClick={() => { navigate('/login') }}>Log in</Button>
@@ -24,5 +25,5 @@ export default function ({ prop }) {
 
             </div>
         }
-    </>
+   </div> </>
 }

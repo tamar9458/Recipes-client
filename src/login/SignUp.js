@@ -51,45 +51,45 @@ export default function App() {
     }
 
     return (
+        <div className="whiteBack signup">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <TextField variant="outlined" style={{ width: '100%' }} label="User Name "
+                    margin="dense" color="secondary"{...register("Username")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
+                    error={!!errors.Username} helperText={errors.Username?.message} />
+                <br />
+                <TextField variant="outlined" style={{ width: '100%' }} label="Name"
+                    margin="dense" color="secondary" {...register("Name")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
+                    error={!!errors.Name} helperText={errors.Name?.message} />
+                <br />
+                <TextField variant="outlined" style={{ width: '100%' }} label="Adress"
+                    margin="dense" color="secondary"{...register("Adress")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><CabinIcon /></InputAdornment>), }}
+                    error={!!errors.Adress} helperText={errors.Adress?.message} />
+                <br />
+                <TextField variant="outlined" style={{ width: '100%' }} label="Email"
+                    margin="dense" type="email" color="secondary" {...register("Email")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><AlternateEmailIcon /></InputAdornment>), }}
+                    error={!!errors.Email} helperText={errors.Email?.message} />
+                <br />
+                <TextField variant="outlined" style={{ width: '100%' }} label="Phone"
+                    margin="dense" color="secondary" minLength={9} maxLength={9} {...register("Phone")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><CallIcon /></InputAdornment>), }}
+                    error={!!errors.Phone} helperText={errors.Phone?.message} />
+                <br />
+                <TextField variant="outlined" style={{ width: '100%' }} label="Tz"
+                    margin="dense" color="secondary"{...register("Tz")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
+                    error={!!errors.Tz} helperText={errors.Tz?.message} />
+                <br />
+                <TextField variant="outlined" style={{ width: '100%' }} label="Password"
+                    margin="dense" type="password" color="secondary" {...register("Password")}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><KeyIcon /></InputAdornment>), }}
+                    error={!!errors.Password} helperText={errors.Password?.message} />
+                <br />
+                <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField variant="outlined"  style={{ width: '20%' }} label="User Name "
-                 margin="dense" color="secondary"{...register("Username")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
-                error={!!errors.Username} helperText={errors.Username?.message} />
-<br/>
-            <TextField variant="outlined" style={{ width: '20%' }} label="Name"
-                 margin="dense" color="secondary" {...register("Name")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
-                error={!!errors.Name} helperText={errors.Name?.message} />
-     <br/>     
-            <TextField variant="outlined" style={{ width: '20%' }} label="Adress"
-                margin="dense"  color="secondary"{...register("Adress")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><CabinIcon /></InputAdornment>), }}
-                error={!!errors.Adress} helperText={errors.Adress?.message} />
-          <br/>
-            <TextField variant="outlined" style={{ width: '20%' }} label="Email"
-                 margin="dense" type="email" color="secondary" {...register("Email")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><AlternateEmailIcon /></InputAdornment>), }}
-                error={!!errors.Email} helperText={errors.Email?.message} />
-<br/>
-            <TextField variant="outlined" style={{ width: '20%' }} label="Phone"
-                 margin="dense" color="secondary" minLength={9} maxLength={9} {...register("Phone")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><CallIcon /></InputAdornment>), }}
-                error={!!errors.Phone} helperText={errors.Phone?.message} />
-          <br/>
-            <TextField variant="outlined" style={{ width: '20%' }} label="Tz"
-                 margin="dense" color="secondary"{...register("Tz")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
-                error={!!errors.Tz} helperText={errors.Tz?.message} />
-          <br/>  
-            <TextField variant="outlined" style={{ width: '20%' }} label="Password"
-                 margin="dense" type="password" color="secondary" {...register("Password")}
-                InputProps={{ startAdornment: (<InputAdornment position="start"><KeyIcon /></InputAdornment>), }}
-                error={!!errors.Password} helperText={errors.Password?.message} />
-          <br/>
-            <Button variant="contained" color="secondary" type="submit">Submit</Button>
-           
-        </form>
+            </form></div>
     )
 }

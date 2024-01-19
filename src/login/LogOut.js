@@ -12,11 +12,10 @@ export default () => {
         dispatch(setUser(null, navigate))
     }
     return <>
-        <Login />
-        <br />
-        <Button variant="outlined" color="secondary" onClick={() => logOut()}>
+         <div className="whiteBack logout"><Login />
+       <Button variant="outlined" color="secondary" onClick={() => logOut()}>
             Log Out
-        </Button>
+        </Button></div>
 
     </>
 }

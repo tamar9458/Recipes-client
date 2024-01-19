@@ -36,16 +36,18 @@ export const deleteRecipe = (user, r) => {
         }).catch((error) => console.error(error))
 
 }
-
-// export function editRecipe(user, r, c) {
-//     return dispatch => {
-//         if (c == 0)
-//         deleteRecipe(user, r)
-//         else {
-//             axios.post(`http://localhost:8080/api/bay`, { Name: r.Name, UserId: user.Id, Count: c }).then(() => {
-//                 dispatch({ type: "EDIT_BUY", data: { Name: r.Name, Count: c } })
-//             }).catch((error) => console.error(error))
-//         }
-//     }
-
-// }
+export const addRecipe = (data) => {
+    return dispatch => axios.post('http://localhost:8080/api/recipe', data)
+        .then(() => {
+            dispatch({ type: "ADD_RECIPE", data: data })
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+}
+export const editRecipe = (data, selectRecipe) => {
+    return dispatch => axios.post('http://localhost:8080/api/recipe/edit', { ...data, UserId: selectRecipe?.UserId, Id: selectRecipe?.Id })
+        .then((response) => {
+            dispatch({ type: "EDIT_RECIPE", data: response.data })
+        }).catch((error) => { console.error(error) })
+}

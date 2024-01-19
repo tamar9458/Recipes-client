@@ -1,34 +1,38 @@
 import { useDispatch } from 'react-redux'
 import { useSelector } from "react-redux/es/hooks/useSelector"
-import { Card } from 'semantic-ui-react'
 import { Add } from '../../service/shopping'
 import { useLocation } from 'react-router-dom'
-import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-
+import { Button } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 export default () => {
 
     const user = useSelector(state => state.user.user);
-    // const buies = useSelector(state => state.buy.buies);
     const { state } = useLocation();
     const props = state;
     const dispatch = useDispatch();
 
     return <>
-        <Card>
-            <p>{props?.Name}</p>
-            <p>Category: {props?.CategoryId}</p>
-            <p>Description: {props?.Description}</p>
-            <p>Duration: {props?.Duration}</p>
-            <p>Difficulty: {props?.Difficulty}</p>
-            Ingrident: {props?.Ingrident.map((x, i) =>
-                <div key={i}>
-                    <div>{x.Name} {x.Count} {x.Type}</div>
-                    <Button variant="outlined" color="secondary" onClick={() => dispatch(Add(user, x, x?.Count))}>buy</Button>
-                </div>)}
-            Instructions: {props?.Instructions.map((x, i) => <div key={i}>{x}</div>)}
-
-            <img src={props?.Img}></img>
-
+        <Card sx={{ maxWidth: 345 }} className='cards show' >
+            <CardHeader title={props?.Name} subheader={props?.Description} />
+            <CardMedia component="img" height="194" image={props?.Img} alt={props?.Name} />
+            <CardContent>
+                <p>Category: {props?.CategoryId} ,
+                    Duration: {props?.Duration} ,
+                    Difficulty: {props?.Difficulty}</p>
+            </CardContent>
+            <CardContent>
+                Ingrident: {props?.Ingrident.map((x, i) =>
+                    <div key={i}>
+                        <CardActions disableSpacing className='buy'>{x.Name} {x.Count} {x.Type}<Button variant="outlined" color="secondary" onClick={() => dispatch(Add(user, x, x?.Count))}>buy</Button></CardActions>
+                    </div>)}
+            </CardContent>
+            <CardContent>
+                Instructions: {props?.Instructions.map((x, i) => <div key={i}>{x}</div>)}
+            </CardContent>
         </Card>
     </>
 }

@@ -1,7 +1,11 @@
 
-import Image from '../images/img.jpg'
+import Image from '../images/homePage.jpg'
+
 export default ()=>{
     return <>
-    <img src={Image} alt="recipes image"></img>
+    {/* <img src={Image} alt="recipes image"></img> */}
+    <div className='homepage'>
+
+    </div>
     </>
 }
