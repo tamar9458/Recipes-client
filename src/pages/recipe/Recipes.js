@@ -40,24 +40,26 @@ export default ({ byUser }) => {
         const selectedDifficulty = event.target.value;
         setSelectedDifficulty(selectedDifficulty);
     };
+    function checkDuration(recipe_duration) {
+        switch (selectedDuration) {
+            case "61":
+                return true;
+            case "60":
+                return (recipe_duration <= 60);
+            case "45":
+                return (recipe_duration <= 45 );
+            case "30":
+                return (recipe_duration <= 30 );
+            case "15":
+                return ( recipe_duration <= 15);
+            default: return false;
+        }
+    }
     const handleDurationChange = (event) => {
         const selectedDuration = event.target.value;
         setSelectedDuration(selectedDuration);
     };
 
-    function checkDuration(recipe_duration) {
-        switch (selectedDuration) {
-            case "60":
-                return (recipe_duration >= 60);
-            case "45":
-                return (recipe_duration >= 45 && recipe_duration < 60);
-            case "30":
-                return (recipe_duration >= 30 && recipe_duration < 45);
-            case "15":
-                return (recipe_duration >= 0 && recipe_duration < 30);
-            default: return false;
-        }
-    }
     function deleteRec(user, x) {
         Swal.fire({
             title: "Delete?",
@@ -92,10 +94,11 @@ export default ({ byUser }) => {
             <p>Select Duration: </p>
             <Select style={{ width: '20%' }} color="secondary" value={selectedDuration || ''} onChange={handleDurationChange}>
                 <MenuItem value={null}>none</MenuItem>
-                <MenuItem value={15}>15 minutes</MenuItem>
-                <MenuItem value={30}>30 minutes</MenuItem>
-                <MenuItem value={45}>45 minutes</MenuItem>
-                <MenuItem value={60}>an hour and more</MenuItem>
+                <MenuItem value={'15'}>15 minutes</MenuItem>
+                <MenuItem value={'30'}>30 minutes</MenuItem>
+                <MenuItem value={'45'}>45 minutes</MenuItem>
+                <MenuItem value={'60'}>an hour</MenuItem>
+                <MenuItem value={'61'}>more then hour</MenuItem>
             </Select>
 
             <p>Select Difficulty: </p>

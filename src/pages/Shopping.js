@@ -11,7 +11,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardActions from '@mui/material/CardActions';
 
 
-
 export default () => {
     const { user, buies } = useSelector(state => ({
         user: state.user.user,

@@ -29,6 +29,7 @@ export default () => {
             dispatch(addCategory(data?.Categorys[index]))
         }
         reset()
+        navigate('/recipe')
     }
 
     return <>

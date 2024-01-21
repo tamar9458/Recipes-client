@@ -25,7 +25,7 @@ export const Del = (user, p) => {
 
 export function Add(user, p, c) {
     return dispatch => {
-        if (c == 0) {
+        if (c <= 0) {
             dispatch(Del(user, p))
         }
         else {

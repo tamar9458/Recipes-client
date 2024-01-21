@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux/es/hooks/useSelector"
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';//הדפסה
 import { Button } from '@mui/material';
 import { useNavigate } from "react-router-dom"
 
 export default function ({ prop }) {
-    
+
     const user = useSelector(state => state.user.user);
     const navigate = useNavigate();
 
@@ -19,7 +20,8 @@ export default function ({ prop }) {
                     <Button variant="outlined" color="secondary" onClick={() => { navigate('/recipe') }}> Recipes </Button>
                     <Button variant="outlined" color="secondary" onClick={() => { navigate('/recipe/:user') }}>My Recipes </Button>
                     <Button variant="outlined" color="secondary" onClick={() => { navigate('/shopping') }}>Shopping</Button>
-                    <Button variant="outlined" color="secondary" onClick={() => { navigate('/logOut') }}>Change user ({user?.Name})</Button>
+                    <Button variant="outlined" color="secondary" onClick={() => { navigate('/logOut') }}>Change user ({user?.Username})</Button>
+                    <Button variant="outlined" color="secondary" onClick={() => { window.print() }}><LocalPrintshopIcon /></Button>
 
                 </div>
             }

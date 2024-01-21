@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 100%;
 }
 
 .container {
@@ -25,6 +25,7 @@
   align-items: flex-start;
   margin-left: 20%;
   margin-top: 5%;
+  padding-top: 10%;
 }
 
 .welcome {
@@ -83,6 +84,7 @@
   background-color: rgb(10 7 13 / 55%);
   width: 100vw;
   height: 100%;
+  align-items: flex-start;
 }
 .shop {
   flex-direction: row;
@@ -95,6 +97,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .buy {

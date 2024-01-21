@@ -51,10 +51,10 @@ export default function App() {
                 <br />
 
                 <br />
-                <Link to={'/signUp'}>Don't have an account yet? Sign Up now</Link>
-                <br />
 
                 <Button variant="contained" color="secondary" type="submit">Submit</Button>
+                <br />
+                <Link to={'/signUp'}>Don't have an account yet? Sign Up now</Link>
 
             </form>
         </div>

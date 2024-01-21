@@ -9,8 +9,14 @@ import Shopping from './pages/Shopping';
 import AddRecipe from './pages/recipe/AddRecipe';
 import LogOut from './login/LogOut';
 import Recipe from './pages/recipe/Recipe';
-function App() {
+import { useEffect } from "react";
+import {useNavigate} from "react-router-dom"
 
+function App() {
+ const navigate=useNavigate()
+ useEffect(() => {
+      navigate('/homePage')
+}, [])
   return (
     <div className="App">
       <header><Header prop={true} /></header>
@@ -26,10 +32,7 @@ function App() {
         <Route path="/logOut" element={<LogOut />}></Route>
         <Route path="/shopping" element={<Shopping />}></Route>
       </Routes>
-      <div className='container'>
-        <div className='welcome'>wellcome</div>
-        <div className='here'>here you have the best recipes you have ever dreamed...</div>
-      </div>
+      
     </div>
   );
 }
