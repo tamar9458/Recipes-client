@@ -1,22 +1,11 @@
-//import Test_fieldArray from '../../Test_fieldArray'
 import { useFieldArray, useForm } from "react-hook-form"
 import { useLocation, useNavigate } from "react-router-dom"
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { yupResolver } from "@hookform/resolvers/yup"
-import axios from "axios"
 import * as yup from "yup"
-import 'semantic-ui-css/semantic.min.css'
 import { useSelector, useDispatch } from "react-redux";
-import { FormField, Form } from 'semantic-ui-react'
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import Card from '@mui/material/Card';
-import Swal from 'sweetalert2'
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import { getAllCategories } from "../../service/category"
 import { addRecipe, editRecipe } from "../../service/recipes"
 
@@ -31,8 +20,8 @@ export default () => {
             Duration: yup.number().required(),
             Difficulty: yup.number().required(),
             Description: yup.string().required(),
-            Instructions: yup.array(yup.string())//.of(yup.object({ Inst: yup.string().required(), })),
-            , Ingrident: yup.array().of(yup.object({
+            Instructions: yup.array(yup.string()),
+            Ingrident: yup.array().of(yup.object({
                 Name: yup.string().required(),
                 Count: yup.number().required(),
                 Type: yup.string().required(),
@@ -125,9 +114,9 @@ export default () => {
                     <div>
                         {Ingrident?.map((item, i) => (
                             <div key={i} className="ingrident">
-                                <TextField className="ingridItem"type="text" placeholder="product name:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Name`)} />
-                                <TextField className="ingridItem"placeholder="count:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Count`)} />
-                                <TextField className="ingridItem"type="text" placeholder="type:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Type`)} />
+                                <TextField className="ingridItem" type="text" placeholder="product name:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Name`)} />
+                                <TextField className="ingridItem" placeholder="count:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Count`)} />
+                                <TextField className="ingridItem" type="text" placeholder="type:" margin="dense" color="secondary"{...register(`Ingrident.${i}.Type`)} />
                             </div>
                         ))}
                     </div>

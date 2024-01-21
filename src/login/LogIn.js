@@ -1,18 +1,16 @@
 
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import SignUp from "./SignUp"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import FingerprintIcon from '@mui/icons-material/Fingerprint';//טביעת אצבע
 import AccountCircle from '@mui/icons-material/AccountCircle';//איש
 import InputAdornment from '@mui/material/InputAdornment';
-import { FormField, Form } from 'semantic-ui-react'
-import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { TextField, Button } from '@mui/material';
 import { setUser } from "../service/user"
+
 const schema = yup
     .object({
         userName: yup.string().required(),
@@ -34,7 +32,8 @@ export default function App() {
         defaultValues: { userName: state?.Username, password: state?.Password }
     })
     const onSubmit = (data) => {
-        dispatch(setUser(data, navigate));
+        dispatch(setUser(data, navigate))
+
     }
     return (
         <div className="whiteBack login">

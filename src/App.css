@@ -1,32 +1,6 @@
 .App {
   text-align: center;
 }
-
-/*
-.recipes {
-  background-image: none;
-   background-image: url(./images/imgbackground.jpg);
-  background-repeat: no-repeat;
-  background-size: cover; 
-}
-
-.p {
-  height: 100vh;
-}
-
-.shopping {
-  background-image: none;
-   background-size: cover;
-  background-repeat: no-repeat;
-  height: 150vh; 
-}
-
-
-
-.form {
-  padding:15%;
-}
-*/
 .App {
   background-image: url(./images/homePage2.jpg);
   height: 100vh;
@@ -105,15 +79,19 @@
   margin-left: 20%;
   margin-right: 20%;
 }
-
+.recipesBack{
+  background-color: rgb(10 7 13 / 55%);
+  width: 100vw;
+  height: 100%;
+}
 .shop {
   flex-direction: row;
 }
 
 .show {
   width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 40%;
+  margin-right: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,16 +141,6 @@ width: 100%;
   }
 }
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
 
 .App-link {
   color: #61dafb;

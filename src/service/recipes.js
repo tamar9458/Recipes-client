@@ -4,35 +4,34 @@ import axios from 'axios';
 
 export const getRecipes = (byUser, user) => {
     return dispatch => {
-        console.log("buUser in services recipes", byUser, user);
         if (!byUser) {
             axios.get(`http://localhost:8080/api/recipe`)
-            .then((res) => {
-                dispatch({ type: "SET_RECIPE", data: res.data })
-            })
-            .catch((error) =>
-                console.error(error)
-            )
+                .then((res) => {
+                    dispatch({ type: "SET_RECIPE", data: res.data })
+                })
+                .catch((error) =>
+                    console.error(error)
+                )
         }
-        else{
+        else {
             axios.get('http://localhost:8080/api/recipe')
-            .then((res) => {
-                dispatch({ type: "SET_RECIPE_USER", userId: user.Id }) 
-            })
-            .catch((error) =>
-                console.error(error)
-            )
+                .then((res) => {
+                    dispatch({ type: "SET_RECIPE_USER", userId: user.Id })
+                })
+                .catch((error) =>
+                    console.error(error)
+                )
         }
-   
+
     }
 }
 
 export const deleteRecipe = (user, r) => {
 
-    return dispatch => axios.post(`http://localhost:8080/api/recipe/delete/${user.Id}`,r.Id)
+    return dispatch => axios.post(`http://localhost:8080/api/recipe/delete/${user.Id}`, r.Id)
         .then(() => {
-            console.log('delete',r);
-            dispatch({ type: "DELETE_RECIPE", data:r })
+            console.log('delete', r);
+            dispatch({ type: "DELETE_RECIPE", data: r })
         }).catch((error) => console.error(error))
 
 }

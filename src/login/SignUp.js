@@ -1,16 +1,9 @@
 import { useForm } from "react-hook-form"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { yupResolver } from "@hookform/resolvers/yup"
-import axios from "axios"
 import * as yup from "yup"
-import 'semantic-ui-css/semantic.min.css'
-import 'semantic-ui-css/semantic.min.css'
-import { FormField, Form } from 'semantic-ui-react'
-import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { addUser, setUser } from "../service/user"
-import Input from '@mui/material/Input';
-//import InputLabel from '@mui/material/InputLabel';
+import { TextField, Button } from '@mui/material';
+import { addUser } from "../service/user"
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';//איש
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';//מייל
@@ -47,7 +40,6 @@ export default function App() {
 
     const onSubmit = (data) => {
         addUser(data, navigate);
-        //  reset();
     }
 
     return (
@@ -90,6 +82,7 @@ export default function App() {
                 <br />
                 <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
-            </form></div>
+            </form>
+        </div>
     )
 }
