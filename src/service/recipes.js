@@ -28,7 +28,7 @@ export const getRecipes = (byUser, user) => {
 
 export const deleteRecipe = (user, r) => {
 
-    return dispatch => axios.post(`http://localhost:8080/api/recipe/delete/${user.Id}`, r.Id)
+    return dispatch => axios.post(`http://localhost:8080/api/recipe/delete/${r.Id}}`)
         .then(() => {
             console.log('delete', r);
             dispatch({ type: "DELETE_RECIPE", data: r })
