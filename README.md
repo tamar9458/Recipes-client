@@ -1,7 +1,8 @@
-
-#hello to my recipe site!
+-------------------------------------------------------
+# hello to my recipe site!
 
 to run this site cmpletely,you need also my server at "https://github.com/tamar9458/React-recipe-server"
+--------------------------------------------------------
 
 # Getting Started with Create React App
 
