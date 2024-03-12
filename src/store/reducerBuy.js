@@ -18,7 +18,7 @@ const reducerBuy = (state = initalseState, action) => {
                 buies.push(action.data);
             }
             else {
-                if (action.data.Count == 0) {
+                if (action.data.Count === 0) {
                     buies.splice(index, 1)
                 }
                 else {

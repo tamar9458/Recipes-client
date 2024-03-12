@@ -119,9 +119,9 @@ export default ({ byUser }) => {
         <div className='whiteBack recipesBack'>
             <div className='cards'>
                 {recipes?.map(x =>
-                    (!selectedCategory || selectedCategory === "none" || x.CategoryId == selectedCategory)
-                        && (!selectedDuration || selectedDuration == "none" || checkDuration(x.Duration))
-                        && (!selectedDifficulty || selectedDifficulty == "none" || selectedDifficulty == x.Difficulty) ?
+                    (!selectedCategory || selectedCategory === "none" || x.CategoryId === selectedCategory)
+                        && (!selectedDuration || selectedDuration === "none" || checkDuration(x.Duration))
+                        && (!selectedDifficulty || selectedDifficulty === "none" || selectedDifficulty === x.Difficulty) ?
                         <Card sx={{ maxWidth: 345 }} key={x?.Id} className='cardOne'>
                             <CardHeader title={x?.Name} subheader={`time: ${x?.Duration}`} />
                             <CardMedia component="img" height="194" image={x?.Img} alt={x?.Name} />
