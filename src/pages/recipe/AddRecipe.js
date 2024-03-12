@@ -63,7 +63,7 @@ export default () => {
     });
     const onSubmit = (data) => {
         {
-            if (selectRecipe == null)
+            if (selectRecipe === null)
                 dispatch(addRecipe(data, UserId))
             else
                 dispatch(editRecipe(data, selectRecipe))

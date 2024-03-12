@@ -13,7 +13,7 @@ const reducerBuy = (state = initalseState, action) => {
         case "EDIT_BUY": {
 
             const buies = [...state.buies];
-            let index = buies.findIndex(x => x.Name == action.data.Name)
+            let index = buies.findIndex(x => x.Name === action.data.Name)
             if (index == -1) {
                 buies.push(action.data);
             }
